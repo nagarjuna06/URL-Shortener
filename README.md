@@ -1,7 +1,5 @@
 # URL Shortener
 
-Live Link:[URL Shortener](https://u-short.netlify.app)
-
 ## Description
 
 This is a URL shortener service that allows you to shorten long URLs and customize the shortened URLs with an alias. The shortened URLs have an expiration feature that automatically expires them if there are no requests for them within a 24-hour period.
