@@ -113,7 +113,7 @@ const UpdateForm = () => {
               placeholder="Enter Alias"
               minLength={5}
               maxLength={10}
-              pattern="^[a-zA-Z0-9]+$"
+              pattern="^[a-zA-Z0-9-_]+$"
               isInvalid={errors?.alias?.invalid}
               required
             />

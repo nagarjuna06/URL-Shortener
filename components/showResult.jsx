@@ -1,11 +1,34 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { Button, Form } from "react-bootstrap";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  Button,
+  Container,
+  Form,
+  OverlayTrigger,
+  Tooltip,
+} from "react-bootstrap";
 
-const ShowResult = ({ long = "", short = "", callback }) => {
+const ShowResult = ({ long = "", short = "", callback = () => {} }) => {
   const path = usePathname();
+  const router = useRouter();
+  const share = () => {
+    if (navigator.share) {
+      navigator.share({
+        text: "URL shortener",
+        url: short,
+        title: "Short URL",
+      });
+    }
+  };
+
+  const copy = () => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(short);
+      alert("Copied to Clipboard");
+    }
+  };
   return (
     <Form className="container mt-5 col-12 col-lg-6">
       <Form.Group className="mb-3">
@@ -39,10 +62,50 @@ const ShowResult = ({ long = "", short = "", callback }) => {
         </Form.Label>
         <Form.Control defaultValue={short} />
       </Form.Group>
+      <div className="d-flex gap-4  mb-3">
+        <OverlayTrigger
+          placement="top"
+          delay={{ show: 250, hide: 400 }}
+          overlay={<Tooltip>Visit URL</Tooltip>}
+        >
+          <Button
+            variant="white border border-primary"
+            onClick={() => router.push(short)}
+          >
+            <Image src="/visit.svg" alt="visit" width={20} height={20} />
+          </Button>
+        </OverlayTrigger>
+        <Button onClick={share}>
+          <Image
+            src="/share.svg"
+            alt="visit"
+            width={20}
+            height={20}
+            className="text-white"
+          />{" "}
+          Share
+        </Button>
+        <OverlayTrigger
+          placement="top"
+          delay={{ show: 250, hide: 400 }}
+          overlay={<Tooltip>Copy to Clipboard</Tooltip>}
+        >
+          <Button className="bg-success" onClick={copy}>
+            <Image
+              src="/copy.svg"
+              alt="visit"
+              width={20}
+              height={20}
+              className="text-white"
+            />{" "}
+            Copy
+          </Button>
+        </OverlayTrigger>
+      </div>
       <Button
         type="submit"
         variant="success"
-        className="p-2 w-100"
+        className="p-2 w-100 font-weight-bold"
         onClick={callback}
       >
         {path == "/" ? "Shorten Another URL" : "Update Another URL"}

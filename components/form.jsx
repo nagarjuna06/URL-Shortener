@@ -130,7 +130,7 @@ const UrlForm = () => {
               placeholder="Enter Alias (Optional)"
               minLength={5}
               maxLength={10}
-              pattern="^[a-zA-Z0-9]+$"
+              pattern="^[a-zA-Z0-9-_]+$"
               value={error.value}
               onChange={handleAliasChange}
               isInvalid={error.inValid}
