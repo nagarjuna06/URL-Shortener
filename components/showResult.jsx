@@ -1,18 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
-import {
-  Button,
-  Container,
-  Form,
-  OverlayTrigger,
-  Tooltip,
-} from "react-bootstrap";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Button, Form, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const ShowResult = ({ long = "", short = "", callback = () => {} }) => {
   const path = usePathname();
-  const router = useRouter();
   const share = () => {
     if (navigator.share) {
       navigator.share({
@@ -26,7 +20,6 @@ const ShowResult = ({ long = "", short = "", callback = () => {} }) => {
   const copy = () => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(short);
-      alert("Copied to Clipboard");
     }
   };
   return (
@@ -68,12 +61,11 @@ const ShowResult = ({ long = "", short = "", callback = () => {} }) => {
           delay={{ show: 250, hide: 400 }}
           overlay={<Tooltip>Visit URL</Tooltip>}
         >
-          <Button
-            variant="white border border-primary"
-            onClick={() => router.push(short)}
-          >
-            <Image src="/visit.svg" alt="visit" width={20} height={20} />
-          </Button>
+          <Link href={short} target="_blank">
+            <Button variant="white border border-primary">
+              <Image src="/visit.svg" alt="visit" width={20} height={20} />
+            </Button>
+          </Link>
         </OverlayTrigger>
         <Button onClick={share}>
           <Image

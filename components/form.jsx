@@ -62,6 +62,9 @@ const UrlForm = () => {
       msg: initialError.msg,
       inValid: false,
     }));
+    if (e.target.value == "") {
+      setCheckbox(false);
+    }
   };
 
   if (success) {

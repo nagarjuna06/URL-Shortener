@@ -32,7 +32,7 @@ This is a URL shortener service that allows you to shorten long URLs and customi
 
 ### Shorten URL
 
-- **Endpoint:** `/shorten`
+- **Endpoint:** `/api/shorten`
 - **Method:** POST
 - **Request Body:**
   - `url` (required): The long URL to be shortened.
@@ -49,8 +49,8 @@ This is a URL shortener service that allows you to shorten long URLs and customi
 
 ## Configuration
 
-- The expiration time for shortened URLs can be adjusted in `server.js`.
-- Database connection settings can be configured in `server.js`.
+- The expiration time for shortened URLs can be adjusted in `linkModel.js`.
+- Database connection settings can be configured in `mongodb.js`.
 - Additional customization options can be found in the respective configuration files.
 
 ## Contributing
