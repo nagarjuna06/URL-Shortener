@@ -116,6 +116,7 @@ const UpdateForm = () => {
               pattern="^[a-zA-Z0-9-_]+$"
               isInvalid={errors?.alias?.invalid}
               required
+              autoComplete="on"
             />
             <Form.Control.Feedback type="invalid" className="small">
               {errors?.alias?.msg}

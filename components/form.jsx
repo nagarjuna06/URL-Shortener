@@ -137,6 +137,7 @@ const UrlForm = () => {
               value={error.value}
               onChange={handleAliasChange}
               isInvalid={error.inValid}
+              autoComplete="on"
             />
             <Form.Control.Feedback type="invalid" className="small">
               {error.msg}
